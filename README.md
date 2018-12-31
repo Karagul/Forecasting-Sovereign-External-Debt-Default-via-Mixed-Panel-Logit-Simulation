@@ -17,4 +17,6 @@ of the model is assessed using the receiver operating characteristic.
 #
 Note:
 
-'mixed_panel_logit.py' was almost exclusively written by Kenneth Rios (https://github.com/kenrios1993). In particular, the mixed-logit model specification and construction. My contributions were limited to helping construct the cross-validation loop. 'default_data.py' was also authored by Kenneth Rios, but contributions were jointly made.
+'mixed_panel_logit.py' was almost exclusively written by Kenneth Rios (https://github.com/kenrios1993). In particular, the mixed-logit model specification and construction. My contributions were limited to helping construct the cross-validation loop. 
+
+'default_data.py' was also authored by Kenneth Rios, but contributions were jointly made.

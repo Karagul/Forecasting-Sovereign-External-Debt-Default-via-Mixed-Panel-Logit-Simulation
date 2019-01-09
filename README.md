@@ -19,4 +19,4 @@ Note:
 
 'mixed_panel_logit.py' was almost exclusively written by Kenneth Rios (https://github.com/kenrios1993). In particular, the mixed-logit model specification and construction. My contributions were limited to helping construct the cross-validation loop. 
 
-'default_data.py' was Co-authored by Kenneth Rios and myself.
+'default_data.py' was co-authored by Kenneth Rios and myself.

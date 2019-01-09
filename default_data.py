@@ -1,24 +1,26 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Nov 29 23:48:25 2018
+Created on Wed Jan 9 01:37:25 2019
 
-Author: Kenneth Rios
-Last Updated: 12/18/2018
+Co-Authors: Kenneth Rios, Shukrit Guha
+Last Updated: 01/09/2019
 """
 
 import os
 import pandas as pd
 
 # Change working directory to Data folder
-os.chdir("C:\\Users\\kenri\\Data_Bootcamp\\Research Project\\Python\\Data\\")
+os.chdir("C:/Users/shukr/Desktop/Bayesquare/Data Bootcamp")
 
 # Import LHS spreadsheet
 LHS = pd.read_excel("external_debt_defaults_master.xlsx")
+# Create extra column needed for model
 LHS["Status"] = "Default"
+LHS
 
 # Import EIU RHS data
 EIU = pd.read_excel("EIU_data.xlsx")
-EIU["Country"] = EIU["Country"].str.title()
+EIU["Country"] = EIU["Country"].str.title() # standardize Country names
 
 # Import World Bank (WB) RHS data
 WB = pd.read_excel("WB_data.xlsx")
@@ -46,7 +48,7 @@ EIU_vars = ['DGDP',
             'INPY',
             'XRRE'] 
 
-# WB
+# Subset for WB variables
 WB_vars = ['Netforeignassets_currentLCU',
            'Inflationconsumerprices_annualpc',
            'Externalbalanceongoodsandservice', 
@@ -54,7 +56,7 @@ WB_vars = ['Netforeignassets_currentLCU',
            'Nettradeingoodsandservices_BoPcu',
            'Unemploymenttotal_pctoftotallabo']
 
-
+# Modify data to contain only subsetted column names
 data = data[["Country", "Year", "Status", "default_RR"] + WB_vars + EIU_vars]
 
 
@@ -82,17 +84,19 @@ data = data[~data.Country.isin(['Austria',
 
 # DIAGNOSTIC: By country, calculate number of NAs for each variable
 check = data.isnull().groupby(data["Country"]).sum()
+
 # DIAGNOSTIC: Return checks for countries with at least one '35' across variables
 check35s = check.loc[check.apply(lambda row: row.astype(str).str.contains("35").any(), axis=1), ]
-
+# Iraq, Kenya and Mozambique will be left out of our analysis
 
 # Replace all economic variables with their one-year lags
 data.iloc[:, 4:25] = data.groupby(data["Country"]).shift(1).iloc[:, 3:24]
+data.shift?
 
 # Purge data set of any observations with missing data
-data = data.dropna(axis=0)  # To Shukrit: Leave this line commented to inspect defaults with missing values!
-#data["missing"] = data.iloc[:, 4:25].isnull().sum(axis = 1)  # Keep commented if line above is uncommented
+data = data.dropna(axis=0)  # Leave this line commented to inspect defaults with missing values!
+# data["missing"] = data.iloc[:, 4:25].isnull().sum(axis = 1)  # Keep commented if line above is uncommented
 
 
 ## Export mixed panel data as .csv
-data.to_csv("C:\\Users\\kenri\\Data_Bootcamp\\Research Project\\Python\\Output\\mixed_panel_data.csv", index = False)
+data.to_csv("C:/Users/shukr/Desktop/Bayesquare/Data Bootcamp/mixed_panel_data.csv", index = False)

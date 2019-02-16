@@ -1,11 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Nov 29 23:48:25 2018
-
-Author: Kenneth Rios
-Reproduced by: Shukrit Guha
-Last Updated: 12/18/2018
-"""
+# Project Begin
 
 import matplotlib.pylab as plt
 import pylogit  # must download source files @ https://github.com/timothyb0912/pylogit

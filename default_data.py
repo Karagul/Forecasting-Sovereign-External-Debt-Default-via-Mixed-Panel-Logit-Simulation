@@ -1,10 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jan 9 01:37:25 2019
-
-Co-Authors: Kenneth Rios, Shukrit Guha
-Last Updated: 01/09/2019
-"""
+# Data Pre-processing
 
 import os
 import pandas as pd
